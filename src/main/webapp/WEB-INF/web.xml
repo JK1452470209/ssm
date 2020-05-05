@@ -1,0 +1,98 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+
+  <display-name>Archetype Created Web Application</display-name>
+
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <!--设置配置文件路径-->
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:applicationContext.xml</param-value>
+  </context-param>
+
+
+  <!--配置前端控制器-->
+  <servlet>
+    <servlet-name>DispatcherServlet</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>classpath:springmvc.xml</param-value>
+    </init-param>
+    <!--启动服务器就创建Servlet-->
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DispatcherServlet</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+
+  <!--中文乱码过滤器-->
+  <filter>
+    <filter-name>CharacterEncodingFilter</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>CharacterEncodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+
+
+
+
+  <servlet>
+    <servlet-name>KaptchaServlet</servlet-name>
+    <servlet-class>com.google.code.kaptcha.servlet.KaptchaServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>KaptchaServlet</servlet-name>
+    <url-pattern>/kaptcha.jpg</url-pattern>
+  </servlet-mapping>
+
+
+
+  <filter>
+    <filter-name>ManagerFilter</filter-name>
+    <filter-class>com.jk.filter.ManagerFilter</filter-class>
+  </filter>
+
+  <filter-mapping>
+      <filter-name>ManagerFilter</filter-name>
+      <url-pattern>/pages/manager/*</url-pattern>
+  </filter-mapping>
+
+
+
+
+  <!--error-page标签配置，服务器出错之后，自动跳转的页面 -->
+  <error-page>
+    <!-- error-code是错误了类型-->
+    <error-code>500</error-code>
+    <!-- location标签表示，要跳转去的页面路径-->
+    <location>/pages/error/error500.jsp</location>
+  </error-page>
+
+
+
+
+  <!--error-page标签配置，服务器出错之后，自动跳转的页面 -->
+  <error-page>
+    <!-- error-code是错误了类型-->
+    <error-code>404</error-code>
+    <!-- location标签表示，要跳转去的页面路径-->
+    <location>/pages/error/error404.jsp</location>
+  </error-page>
+
+
+</web-app>
