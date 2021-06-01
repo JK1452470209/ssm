@@ -7,6 +7,7 @@ import com.jk.domain.*;
 import com.jk.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 
@@ -27,6 +28,7 @@ public class OrderServiceImpl implements OrderService {
     private BookDao bookDao;
 
     @Override
+    @Transactional
     public String createOrder(Cart cart, Integer userId) {
 
         String orderId = System.currentTimeMillis() + "" + userId;

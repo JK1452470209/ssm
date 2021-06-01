@@ -39,7 +39,6 @@ public class ClientBookServlet{
 
         page.setUrl("/book/clientBookServletpage?action=1");
 
-
         req.setAttribute("page",page);
         req.getRequestDispatcher("/pages/client/index.jsp").forward(req,resp);
     }
@@ -68,7 +67,6 @@ public class ClientBookServlet{
         if (req.getParameter("max") != null){
             sb.append("&max=").append(req.getParameter("max"));
         }
-
 
         page.setUrl(sb.toString());
 

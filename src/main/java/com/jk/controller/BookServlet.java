@@ -30,7 +30,6 @@ public class BookServlet{
         int pageNo = WebUtils.parseInt(req.getParameter("pageNo"), 1);
         int pageSize = WebUtils.parseInt(req.getParameter("pageSize"), Page.PAGE_SIZE);
 
-
         Page<Book> page = bookService.page(pageNo,pageSize);
 
         page.setUrl("bookServletpage?action=1");
@@ -48,7 +47,6 @@ public class BookServlet{
 
         bookService.addBook(book);
 
-
         resp.sendRedirect(req.getContextPath() + "/bookServletpage?pageNo=" + pageNo);
 
     }
@@ -58,9 +56,7 @@ public class BookServlet{
 
         int id = WebUtils.parseInt(req.getParameter("id"),0);
 
-
         bookService.deleteBookById(id);
-
 
         resp.sendRedirect(req.getContextPath() + "/bookServletpage?pageNo=" + req.getParameter("pageNo"));
 
@@ -68,7 +64,6 @@ public class BookServlet{
 
     @RequestMapping("/bookServletupdate")
     public void update(HttpServletRequest req, HttpServletResponse resp,Book book) throws ServletException, IOException {
-
 
         bookService.updateBook(book);
 
